@@ -1,3 +1,6 @@
+# TODO: Reformat database to use new csv
+# TODO: Figure out how to rewrite database every time data updates
+
 from sqlalchemy import MetaData, create_engine, String, Column
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
