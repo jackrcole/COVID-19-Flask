@@ -1,7 +1,7 @@
 # TODO: Reformat database to use new csv
 # TODO: Figure out how to rewrite database every time data updates
 
-from sqlalchemy import MetaData, create_engine, String, Column
+from sqlalchemy import MetaData, create_engine, String, Column, Integer, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -11,20 +11,21 @@ Base = declarative_base()
 db_session = sessionmaker(bind=engine)()
 
 
-# Table confirmed
-class City(Base):
-    __tablename__ = 'confirmed'
-    province = Column(String, primary_key=True)
-    city_name = Column(String)
-    city_climate = Column(String)
-    city_meteo_data = relationship("Meteo", backref="city")
+# Table with all the data
+class CoronaEntry(Base):
+    __tablename__ = 'covid19_normalized'
+    province_state = Column(String, primary_key=True)
+    country_region = Column(String)
+    observation_date = Column(String)
+    continent = Column(String)
+    us_county = Column(String)
+    us_state = Column(String)
+    confirmed_total = Column(Integer)
+    deaths_total = Column(Integer)
+    confirmed_daily = Column(Integer)
+    deaths_daily = Column(Integer)
+    recovered_daily = Column(Integer)
+    latitude = Column(Float)
+    longitude = Column(Float)
 
 
-# Table meteo
-class Meteo(Base):
-    __tablename__ = 'meteo'
-    id = Column(Integer, primary_key=True)
-    city_id = Column(ForeignKey('city.city_id'))
-    month = Column(String)
-    average_humidity = Column(Integer)
-    average_temperature = Column(Float)

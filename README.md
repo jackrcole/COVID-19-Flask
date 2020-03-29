@@ -2,4 +2,4 @@
 Simple Flask web application.
 
 #### Data Sources:
-https://github.com/CSSEGISandData/COVID-19.git
+https://data.beta.nyc/dataset/covid-19-time-series
